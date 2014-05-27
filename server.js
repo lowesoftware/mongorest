@@ -40,6 +40,31 @@ app.get('/:collection/:id', function(req, res) {
 });
 
 
+
+// list all documents with an optional filter
+app.get('/:collection', function(req, res) {
+	if(!req.query.filter) {
+		req.query.filter = "{}"
+	};
+	
+	mongorest.find(req.params.collection, JSON.parse(req.query.filter), function (err, result) {
+		if(err) {
+			res.json(500, err);
+			return;
+		}
+
+		if(result.length == 0) {
+			res.json(404, {});
+			return;
+		}
+
+		res.json(200, result);
+	});
+    
+});
+
+
+
 // replace a document by id
 app.put('/:collection/:id', function(req, res) {
 	mongorest.update(req.params.collection, {_id:new ObjectID(req.params.id)}, req.body, function (err, result) {

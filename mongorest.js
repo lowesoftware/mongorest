@@ -54,7 +54,7 @@ MongoRest.prototype.modify = function(collection, filter, values, callback) {
 		}
     	db.collection(collection).findAndModify(
 			filter, 
-			[], 
+			[],
 			{$set: values},
 			{},
 			function (err, result) {
