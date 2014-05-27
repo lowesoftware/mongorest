@@ -20,8 +20,6 @@ app.use(bodyParser());
 
 mongorest = new MongoRest(app, "mongodb://localhost:27017/mongorest");
 
-
-
-var port = Number(3030);
+var port = Number(5000);
 app.listen(port);
 console.log('Listening on port ' + port + '...');
