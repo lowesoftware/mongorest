@@ -9,14 +9,15 @@ More advanced options and methods will likely be added in the future to support 
 This was initially built to aid in rapid prototyping of JSON document driven SPA web or mobile/Cordova applications. This allows one to spin up a general mongodb and node server and write all of the application logic in the web app while slowly then filling in more application specific REST methods.
 
 
-##To Do##
+##Features##
 
-* Expose additional native mongo functionality
-* Bulk updates
-* Authentication using connect framework and/or passport
-* Enhance HTTP response code details
-* Add support for API versioning, e.g. prefix routes
-* Add data validation support based on JSON schema documents
+mongorest supports the following logical operations:
+
+* create a new document
+* update properties within a document by _id
+* replace an entire document by _id
+* delete a document by _id
+* list records in a collection using a mongo filter condition
 
 
 ##Setup##
@@ -47,11 +48,15 @@ Add the mongorest.js file to your project directory. Then, create a new mongores
 
 ##Usage##
 
-mongorest supports the following logical operations:
+** In process **
 
-* create a new document
-* update properties within a document by _id
-* replace an entire document by _id
-* delete a document by _id
-* list records in a collection using a mongo filter condition
+###Create a document###
+
+*POST /<collection>*
+
+_Request Body_ A JSON object to insert into the collection
+
+_HTTP Response Codes_ 200 - OK, 500 - Error
+
+_Response Body_ JSON If successful, a JSON object representing the entire document inserted into the mongo collection.
 
