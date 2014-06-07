@@ -1,5 +1,5 @@
 // private
-var mongoclient = require('mongodb').MongoClient
+var mongoclient = require('mongodb').MongoClient;
 var mongoconfig;
 
 // constructor
@@ -15,7 +15,7 @@ function MongoRest(expressapp, config) {
 				return;
 			}
 
-			if(result.length == 0) {
+			if(result.length === 0) {
 				res.json(404, {});
 				return;
 			}
@@ -30,8 +30,8 @@ function MongoRest(expressapp, config) {
 	// list all documents with an optional filter
 	expressapp.get('/:collection', function(req, res) {
 		if(!req.query.filter) {
-			req.query.filter = "{}"
-		};
+			req.query.filter = "{}";
+		}
 
 		mongorest.find(req.params.collection, JSON.parse(req.query.filter), function (err, result) {
 			if(err) {
@@ -39,7 +39,7 @@ function MongoRest(expressapp, config) {
 				return;
 			}
 
-			if(result.length == 0) {
+			if(result.length === 0) {
 				res.json(404, {});
 				return;
 			}
@@ -88,7 +88,7 @@ function MongoRest(expressapp, config) {
 				return;
 			}
 
-			if(result == 0) {
+			if(result === 0) {
 
 			}
 
@@ -130,7 +130,7 @@ MongoRest.prototype.find = function(collection, filter, callback) {
     		callback(undefined, result);
     	});
 	});
-}
+};
 
 MongoRest.prototype.insert = function(collection, obj, callback) {
 	mongoclient.connect(mongoconfig, function(err, db) {
@@ -151,7 +151,7 @@ MongoRest.prototype.insert = function(collection, obj, callback) {
 			}
 		);
 	});
-}
+};
 
 MongoRest.prototype.modify = function(collection, filter, values, callback) {
 	mongoclient.connect(mongoconfig, function(err, db) {
@@ -174,7 +174,7 @@ MongoRest.prototype.modify = function(collection, filter, values, callback) {
 			}
 		);
 	});
-}
+};
 
 
 MongoRest.prototype.update = function(collection, filter, values, callback) {
@@ -198,7 +198,7 @@ MongoRest.prototype.update = function(collection, filter, values, callback) {
 			}
 		);
 	});
-}
+};
 
 MongoRest.prototype.remove = function(collection, filter, callback) {
 	mongoclient.connect(mongoconfig, function(err, db) {
@@ -218,7 +218,7 @@ MongoRest.prototype.remove = function(collection, filter, callback) {
 			}
 		);
 	});
-}
+};
 
 //export the class
 module.exports = MongoRest;
